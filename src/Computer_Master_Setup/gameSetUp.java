@@ -1,6 +1,7 @@
 package Computer_Master_Setup;
 
 import Computer_Master_Display.Display;
+import Computer_master_Manager.Manager;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -9,6 +10,11 @@ public class gameSetUp implements Runnable {
     String title;
     int width;
     int height;
+
+    public static final int gameWidth = 400;
+    public static final int gameHeight = 400;
+
+    private Manager manager;
 
     private Thread thread;
 
@@ -30,6 +36,8 @@ public class gameSetUp implements Runnable {
 
     public void init() {
         display = new Display(title, width, height);
+        manager = new Manager();
+        manager.init();
 
     }
 
@@ -62,7 +70,7 @@ public class gameSetUp implements Runnable {
     }
 
     public void tick(){
-        y += 1;
+        manager.tick();
     }
 
     public void render(){
@@ -79,8 +87,10 @@ public class gameSetUp implements Runnable {
 
         //draw
 
-        g.fillRect(33, y , 44, 44);
+        g.setColor(Color.WHITE);
+        g.fillRect(50, 50, gameWidth, gameHeight);
 
+        manager.render(g);
 
         //end of draw
 

@@ -9,7 +9,7 @@ public class Display {
     int width;
     int height;
 
-    private JFrame frame;
+    public static JFrame frame;
     private Canvas canvas;
 
     public Display(String title, int width, int height){
@@ -34,6 +34,8 @@ public class Display {
 
         canvas = new Canvas();
         canvas.setPreferredSize(new Dimension(width, height));
+        canvas.setBackground(new Color(212, 204, 161));
+//        canvas.setFocusable(false);
 
         frame.add(canvas);
         frame.pack();
