@@ -28,7 +28,7 @@ public class gameSetUp implements Runnable {
 
     private int y;
 
-    public gameSetUp(String title, int width, int height) {   //constructer
+    public gameSetUp(String title, int width, int height) {   //constructer, this call came from Main Class
         this.height = height;
         this.title = title;
         this.width = width;
@@ -41,7 +41,7 @@ public class gameSetUp implements Runnable {
 
     }
 
-    public synchronized void start() {
+    public synchronized void start() {  // This function is accessed by Main Class
 
         if (running)
             return;
@@ -100,7 +100,7 @@ public class gameSetUp implements Runnable {
 
     @Override
     public void run() {
-        init();
+        init();      //This call goes to Display Class
 
         int fps = 50;
         double timePerTick = 1000000000/fps;

@@ -30,4 +30,8 @@ public class Bullet {
         g.setColor(Color.blue);
         g.fillRect(x, y, 6, 10);
     }
+
+    public int getX() {
+        return x;
+    }
 }
