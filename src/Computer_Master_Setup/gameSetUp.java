@@ -1,12 +1,13 @@
 package Computer_Master_Setup;
 
 import Computer_Master_Display.Display;
+import Computer_master_Graphics.loadImage;
 import Computer_master_Manager.Manager;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
-public class gameSetUp implements Runnable {
+public class gameSetUp implements Runnable{
     String title;
     int width;
     int height;
@@ -35,10 +36,11 @@ public class gameSetUp implements Runnable {
     }
 
     public void init() {
+
         display = new Display(title, width, height);
+        loadImage.init();
         manager = new Manager();
         manager.init();
-
     }
 
     public synchronized void start() {  // This function is accessed by Main Class
@@ -87,8 +89,11 @@ public class gameSetUp implements Runnable {
 
         //draw
 
-        g.setColor(Color.WHITE);
-        g.fillRect(50, 50, gameWidth, gameHeight);
+//        g.setColor(Color.WHITE);
+//        g.fillRect(50, 50, gameWidth, gameHeight);
+
+        g.drawImage(loadImage.bufferedImage, 50, 50, gameWidth, gameHeight, null);
+
 
         manager.render(g);
 

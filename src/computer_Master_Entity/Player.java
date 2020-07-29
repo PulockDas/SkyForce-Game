@@ -2,6 +2,7 @@ package computer_Master_Entity;
 
 import Computer_Master_Bullets.Bullet;
 import Computer_Master_Display.Display;
+import Computer_master_Graphics.loadImage;
 import Computer_master_Manager.Manager;
 
 import java.awt.*;
@@ -14,6 +15,8 @@ public class Player implements KeyListener {
     private boolean left, right, fire;
     private long current, delay;
 
+    private int health;
+
     public Player(int x, int y){
         this.x = x;
         this.y = y;
@@ -24,32 +27,38 @@ public class Player implements KeyListener {
 
         current = System.nanoTime();
         delay = 100;
+        health = 3;
     }
 
     public void tick(){
-        if(left){
-            if(x>=50)
-                x -= 4;
-        }
+        if (health > 0) {
 
-        if(right){
-            if(x<=420)
-                x += 4;
-        }
-
-        if(fire){
-            long breaks = (System.nanoTime()-current)/1000000;
-            if(breaks > delay) {
-                Manager.bullet.add(new Bullet(x + 13, y));
+            if (left) {
+                if (x >= 50)
+                    x -= 4;
             }
 
-            current = System.nanoTime();
+            if (right) {
+                if (x <= 420)
+                    x += 4;
+            }
+
+            if (fire) {
+                long breaks = (System.nanoTime() - current) / 1000000;
+                if (breaks > delay) {
+                    Manager.bullet.add(new Bullet(x + 13, y));
+                }
+
+                current = System.nanoTime();
+            }
         }
     }
 
     public void render(Graphics g) {
-        g.setColor(Color.RED);
-        g.fillRect(x, y, 30, 30);
+
+        if(health>0) {
+            g.drawImage(loadImage.player, x, y, 30, 30, null);
+        }
     }
 
     public void keyPressed(KeyEvent e){
@@ -92,5 +101,13 @@ public class Player implements KeyListener {
 
     public int getY(){
         return y;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
     }
 }

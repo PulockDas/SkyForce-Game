@@ -1,5 +1,7 @@
 package Computer_Master_Enemy;
 
+import Computer_master_Graphics.loadImage;
+
 import java.awt.*;
 
 public class Enemy {
@@ -11,12 +13,12 @@ public class Enemy {
     }
 
     public void tick(){
-        y+=1;
+        y+=4;
     }
 
     public void render(Graphics g){
-        g.setColor(Color.black);
-        g.fillOval(x, y, 25, 25);
+//        g.setColor(Color.blue);
+        g.drawImage(loadImage.enemy, x, y, 25, 25, null);
     }
 
     public int getX(){
